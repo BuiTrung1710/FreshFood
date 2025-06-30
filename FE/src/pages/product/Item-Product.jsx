@@ -6,7 +6,7 @@ import {
   CardMedia,
   Grid,
   Rating,
-  Typography
+  Typography,
 } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
 import { formatImg } from "../../utils/imgHelpers";
@@ -17,7 +17,6 @@ import { onAddItem } from "../../redux/actions/cartActions";
 import Snackbar from "@mui/material/Snackbar";
 import MuiAlert from "@mui/material/Alert";
 import { useState } from "react";
-
 
 const colorChange = keyframes`
     0% {
@@ -36,6 +35,7 @@ export const ItemProduct = ({ product }) => {
   const navigate = useNavigate();
   const dispath = useDispatch();
   const onClickProduct = () => {
+    //Gửi hành động để thêm sản phẩm vào giỏ hàng
     dispath(onAddItem(product));
     handleOpenSnackbar();
   };
@@ -111,9 +111,7 @@ export const ItemProduct = ({ product }) => {
             {product.productName}
           </Link>
           <br />
-          <Typography
-            className= "blink-text"
-          >
+          <Typography className="blink-text">
             {product.stock_quantity > 0 ? "Còn hàng" : "Hết hàng"}
           </Typography>
         </CardContent>
@@ -221,7 +219,7 @@ const StyledItemPrroduct = styled.div`
     margin-left: 5px;
     line-height: auto;
   }
- 
+
   .blink-text {
     animation: ${colorChange} 2s infinite; /* Thời gian chuyển đổi màu sắc và lặp lại */
     font-size: 30px;
